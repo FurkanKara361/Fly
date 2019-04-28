@@ -1,0 +1,12 @@
+# The plugin.yml for the plugin.
+
+name: Fly
+description: Enabling Fly on Servers
+author: SaVaGeCrEePeR28
+version: 1.0
+main: me.savagecreeper28.main.Main
+
+commands:
+  fly:
+    description: Enable Fly on Survival Mode.
+    usage: /<command>
