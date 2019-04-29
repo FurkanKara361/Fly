@@ -18,35 +18,43 @@ public class Fly implements CommandExecutor {
             // Defines the player.
             Player player = (Player)sender;
 
-            // Checks if the sender is the player. If not, send a message to the sender.
-            if(sender instanceof Player){
+            // Checks if the args higher than 0 (1). If yes, return a message.
+            if(args.length == 0){
 
-                // Checks if the player has the permission to execute the command. If not, send a error message to the player.
-                if(player.hasPermission("system.fly.execute")){
+                // Checks if the sender is the player. If not, send a message to the sender.
+                if(sender instanceof Player){
 
-                    // Checks if the player has already fly enabled. If not, do it with a else statement.
-                    if(player.getAllowFlight()){
+                    // Checks if the player has the permission to execute the command. If not, send a error message to the player.
+                    if(player.hasPermission("system.fly.execute")){
 
-                        // Set the flying off and send a message to the player.
-                        player.setAllowFlight(false);
-                        player.sendMessage(Main.prefix + "§cYou can no longer fly!");
+                        // Checks if the player has already fly enabled. If not, do it with a else statement.
+                        if(player.getAllowFlight()){
+
+                            // Set the flying off and send a message to the player.
+                            player.setAllowFlight(false);
+                            player.sendMessage(Main.prefix + "§cYou can no longer fly!");
+
+                        }else{
+
+                            // Set the flying on and send a message to the player.
+                            player.setAllowFlight(true);
+                            player.sendMessage(Main.prefix + "§aYou can now fly.");
+
+                        }
 
                     }else{
-
-                        // Set the flying on and send a message to the player.
-                        player.setAllowFlight(true);
-                        player.sendMessage(Main.prefix + "§aYou can now fly.");
-
+                        // Send a error to the Player
+                        player.sendMessage(Main.prefix + "§cYou have not the permissions to execute this command.");
                     }
 
                 }else{
-                    // Send a error to the Player
-                    player.sendMessage(Main.prefix + "§cYou have not the permissions to execute this command.");
+                    // Send the sender a message.
+                    sender.sendMessage(Main.prefix + "§cYou must be a player to execute this command.");
                 }
-
+                
             }else{
-                // Send the sender a message.
-                sender.sendMessage(Main.prefix + "§cYou must be a player to execute this command.");
+                // Send the message.
+                player.sendMessage("§cUse /fly!");
             }
         }
         return true;
